@@ -10,13 +10,14 @@ public class NumberWizard : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Welcome to Number Wizard, yo!");
-        Debug.Log("Pick a number, don't tell me what it is...");
-        Debug.Log("The highest number you may choose is: " + max);
-        Debug.Log("The lowest number you may choose is: " + min);
+        Debug.Log("You play Number Wizard now!");
+        Debug.Log("Pick number, don't tell number...");
+        Debug.Log("Most big number you pick am: " + max);
+        Debug.Log("Most small number you pick am: " + min);
+        Debug.Log("Tell if number more big or more small am: " + guess);
+        Debug.Log("Push Up = More big, Push Down = More small, Push Enter = Yes number");
 
-        Debug.Log("Tell me if your number is higher or lower than mu number");
-        Debug.Log("Push Up = Higher, Push Down = Lower, Push Return or Enter = Correct");
+        max = max + 1;
     }
 
     void Update()
@@ -24,23 +25,21 @@ public class NumberWizard : MonoBehaviour
         //Unity docs Player Input - KeyCode
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Debug.Log("Up arrow key pressed");
             min = guess;
-            Debug.Log(guess);
+            guess = (max + min) / 2;
+            Debug.Log("You number more big or more small am: " + guess);
         }
 
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Debug.Log("Down arrow key pressed");
             max = guess;
-            Debug.Log(guess);
+            guess = (max + min) / 2;
+            Debug.Log("You number more big or more small am: " + guess);
         }
 
         else if (Input.GetKeyDown(KeyCode.Return))
         {
-            Debug.Log("Enter key pressed");
-            
-            Debug.Log(guess);
+            Debug.Log("You number am: " + guess);            
         }
     }
 }
