@@ -4,12 +4,45 @@ using UnityEngine;
 
 public class NumberWizard : MonoBehaviour
 {
-        int max = 1000;
-        int min = 1;
-        int guess = 500;
+        int max;
+        int min;
+        int guess;
 
     void Start()
     {
+        StartGame();
+    }
+
+
+    void Update()
+    {
+        //Unity docs Player Input - KeyCode
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            min = guess;
+            NextGuess();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            max = guess;
+            NextGuess();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("You number am: " + guess);   
+            Debug.Log("You start game again!");   
+            StartGame();         
+        }
+    }
+    
+    void StartGame()
+    {
+        max = 1000;
+        min = 1;
+        guess = 500;
+
         Debug.Log("You play Number Wizard now!");
         Debug.Log("Pick number, don't tell number...");
         Debug.Log("Most big number you pick am: " + max);
@@ -20,26 +53,11 @@ public class NumberWizard : MonoBehaviour
         max = max + 1;
     }
 
-    void Update()
+    void NextGuess()
     {
-        //Unity docs Player Input - KeyCode
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            min = guess;
             guess = (max + min) / 2;
             Debug.Log("You number more big or more small am: " + guess);
-        }
-
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            max = guess;
-            guess = (max + min) / 2;
-            Debug.Log("You number more big or more small am: " + guess);
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Debug.Log("You number am: " + guess);            
-        }
     }
+
+
 }
